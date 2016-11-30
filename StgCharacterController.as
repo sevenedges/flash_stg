@@ -33,20 +33,31 @@
 			}
 		}
 
-		// 自弾を生成する
+		// ノーマルな自弾を生成する
 		// _x, _y: 座標
-		// _r: 角度(=0)
+		// _r: 表示角度(=0)
 		public function AddPlayerBullet(_x: Number, _y: Number, _r: Number = 0) {
 			var playerBullet = new PlayerBulletNormal(this, _x, _y, _r);
 			AddStgCharacter(playerBullet);
 		}
-
-		// 敵弾を生成する
+		
+		// ノーマルな敵弾を生成する
 		// _x, _y: 座標
-		// _r: 角度(=0)
-		public function AddEnemyBullet(_x: Number, _y: Number, _r: Number = 0, _angle:Number = 0) {
+		// _r: 表示角度(=0)
+		// _angle: 発射角度(=PI*3/2)
+		public function AddEnemyBullet(_x: Number, _y: Number, _r: Number = 0, _angle:Number = Math.PI*3/2) {
 			var enemyBullet = new EnemyBulletNormal(this, _x, _y, _r, _angle);
 			AddStgCharacter(enemyBullet);
+		}
+
+		// キャラクタを生成する
+		// _characterClassName: クラス名
+		// _x, _y: 座標
+		// _obj: 任意のパラメータオブジェクト
+		public function AddCharacterByName(_characterClassName: String, _x: Number, _y: Number, _obj: Object){
+			var characterClass: Class = getDefinitionByName(_characterClassName) as Class;
+			var character = new characterClass(this, _x, _y, _obj) as StgCharacter;
+			AddStgCharacter(character);
 		}
 
 		// 敵(編隊)を生成する
@@ -63,7 +74,7 @@
 
 		// 爆発エフェクトを生成する
 		// _x, _y: 座標
-		// _r: 角度(=0)
+		// _r: 表示角度(=0)
 		function AddExplosion(_x: Number, _y: Number, _r: Number = 0) {
 			var explosion = new ExplosionNormal(this, _x, _y, _r);
 			AddStgCharacter(explosion);

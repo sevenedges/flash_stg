@@ -25,10 +25,15 @@
 				this.y += vy;
 				this.rotation += 12;
 
-				if (scc.player && this.y > scc.player.y ) {
+				if (scc.player && this.y > scc.player.y) {
 					vy = -Math.abs(vy);
 					if (numberOfBullets > 0) {
-						scc.AddEnemyBullet(this.x, this.y, 0, scc.GetPlayerAngle(this.x, this.y));
+						var _r = scc.GetPlayerAngle(this.x, this.y)
+						//scc.AddEnemyBullet(this.x, this.y, _r, _r);
+						for (var i = 0; i < 12; i++){
+							scc.AddCharacterByName("EnemyBulletNeedle", this.x, this.y, {r:_r*180/Math.PI, angle:_r});
+							_r += Math.PI / 6;
+						}
 						numberOfBullets--;
 					}
 				}

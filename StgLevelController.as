@@ -3,7 +3,9 @@
 	public class StgLevelController {
 
 		var age: int; // 仮
-
+		
+		
+	
 		public function StgLevelController() {
 			age = 0;
 		}
