@@ -44,8 +44,8 @@
 		// 敵弾を生成する
 		// _x, _y: 座標
 		// _r: 角度(=0)
-		public function AddEnemyBullet(_x: Number, _y: Number, _r: Number = 0) {
-			var enemyBullet = new EnemyBulletNormal(this, _x, _y, _r);
+		public function AddEnemyBullet(_x: Number, _y: Number, _r: Number = 0, _angle:Number = 0) {
+			var enemyBullet = new EnemyBulletNormal(this, _x, _y, _r, _angle);
 			AddStgCharacter(enemyBullet);
 		}
 
@@ -73,7 +73,15 @@
 		public function GetPlayer(): StgPlayer {
 			return player;
 		}
-		
+				
+		// 指定座標からプレイヤーへの方向
+		// _x, _y: 座標
+		public function GetPlayerAngle(_x: Number, _y: Number): Number {
+			var dx = GetPlayer().x - _x;
+			var dy = GetPlayer().y - _y;
+			return Math.atan2(dy, dx);
+		}
+
 		// 毎フレーム処理
 		public function ActAll(_isTouching: Boolean) {
 			// 自機にタッチ情報を渡す
