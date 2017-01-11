@@ -12,7 +12,9 @@
 		private var touchY: Number = 0;
 
 		// サウンドプレイヤー
-		var ssp: StgSoundPlayer;
+		//var ssp: StgSoundPlayer;
+		// もしくはサウンドクラスを直接コントロール（３か所全て上記に置き換えて使う）
+		var SE_Shot: SeShot;
 
 		public function StgPlayer(_scc: StgCharacterController, _x: Number, _y: Number) {
 			super(_scc, _x, _y);
@@ -21,7 +23,9 @@
 			hitHeight = 32;
 
 			// サウンドプレイヤー初期化
-			ssp = new StgSoundPlayer();
+			//ssp = new StgSoundPlayer();
+			// もしくはサウンドクラスを直接コントロール（３か所全て上記に置き換えて使う）
+			SE_Shot = new SeShot();
 		}
 
 		public function Touch(_isTouching: Boolean) {
@@ -59,8 +63,11 @@
 				// Auto Shot
 				if (++shotRepeatCounter > shotRepeatCounterMax) {
 					scc.AddPlayerBullet(this.x, this.y, 0);
-					ssp.PlayShotSE();	// SE再生
 					shotRepeatCounter = 0;
+					// SE再生
+					//ssp.PlayShotSE();	
+					// もしくはサウンドクラスを直接コントロール（３か所全て上記に置き換えて使う）
+					SE_Shot.play();
 				}
 			}
 		}
