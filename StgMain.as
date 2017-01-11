@@ -12,7 +12,7 @@
 
 		// キャラクタコントローラ
 		var scc: StgCharacterController;
-
+		
 		// ゲームフェイズ管理
 		var ph: String;
 

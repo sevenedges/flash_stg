@@ -8,6 +8,7 @@
 		var enemyCreateCounter: int;	// 次の敵出現までのカウンタ
 		var testStageDataID: int;		// 敵出現管理ID
 		var testStageData = [			// 敵出現データ（仮）
+			[ 20, "MesStage01", 1, {}],
 			[ 90, "Enemy00", 4, {vy: 6}],
 			[ 30, "Enemy00", 2, {vy: 6}],
 			[ 30, "Enemy00", 2, {vy: 6}]

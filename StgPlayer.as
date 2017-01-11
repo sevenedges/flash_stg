@@ -11,11 +11,17 @@
 		private var touchX: Number = 0;
 		private var touchY: Number = 0;
 
+		// サウンドプレイヤー
+		var ssp: StgSoundPlayer;
+
 		public function StgPlayer(_scc: StgCharacterController, _x: Number, _y: Number) {
 			super(_scc, _x, _y);
 			type = StgConst.TYPE_PLAYER;
 			hitWidth = 24;
 			hitHeight = 32;
+
+			// サウンドプレイヤー初期化
+			ssp = new StgSoundPlayer();
 		}
 
 		public function Touch(_isTouching: Boolean) {
@@ -53,6 +59,7 @@
 				// Auto Shot
 				if (++shotRepeatCounter > shotRepeatCounterMax) {
 					scc.AddPlayerBullet(this.x, this.y, 0);
+					ssp.PlayShotSE();	// SE再生
 					shotRepeatCounter = 0;
 				}
 			}
